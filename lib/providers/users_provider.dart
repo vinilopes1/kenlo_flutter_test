@@ -11,7 +11,6 @@ class UsersProvider extends GetConnect {
     User user = User();
     final response = await get('${baseUrl}/$id', decoder:(body) {
       user = User.fromJson(body);
-      print(body);
       return user;
     });
 

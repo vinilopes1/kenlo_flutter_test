@@ -4,11 +4,26 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:kenlo_flutter_test/controllers/posts_controller.dart';
 import 'package:kenlo_flutter_test/controllers/users_controller.dart';
+import 'package:kenlo_flutter_test/pages/login_page.dart';
 import 'package:kenlo_flutter_test/utils/hex_color.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 
 class PostsPage extends GetView<PostsController> {
   final controller = Get.put(PostsController());
+  // final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+
+  Future<Null> logout(context) async {
+   // prefs.setString('username', "");
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(
+        builder: (BuildContext context) => LoginPage(),
+      ),
+      (route) => false,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +51,7 @@ class PostsPage extends GetView<PostsController> {
             ListTile(
               title: const Text('Sair'),
               onTap: () {
+                logout(context);
               },
             ),
           ],
